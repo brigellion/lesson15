@@ -11,20 +11,20 @@ const DomElement = function (selector, height, width, bg, fontSize) {
 
 DomElement.prototype.addElement = function () {
     let element = 0;
+    const attr = this.selector.slice(1);
     if (this.selector.startsWith('.')) {
-        this.selector = this.selector.slice(1);
         element = document.createElement('div');
-        element.classList.add(this.selector);
+        element.classList.add(attr);
         element.textContent = 'Tag <div>';
     } else if (this.selector.startsWith('#')) {
-        this.selector = this.selector.slice(1);
         element = document.createElement('p');
         element.textContent = 'Tag <p>';
-        element.id = this.selector;
+        element.id = attr;
+    } else {
+        alert('Некорректный ввод');
     }
     if (element) {
-        element.style.cssText = `selector: ${this.selector}; 
-        height: ${this.height}px; 
+        element.style.cssText = `height: ${this.height}px; 
         width: ${this.width}px; 
         background-color: ${this.bg}; 
         font-size: ${this.fontSize}px;
